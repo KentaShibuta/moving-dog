@@ -22,6 +22,12 @@ def main():
         screen.blit(text, [20, 100])
         text2 = font.render("2. キーボードの十字キーで操作してください。", True, (0, 0, 0))
         screen.blit(text2, [20, 130])
+        text3 = font.render("3. クリックした場所に画像が移動します", True, (0, 0, 0))
+        screen.blit(text3, [20, 160])
+        text = font.render("1. 画面をクリックしてください。", True, (0, 0, 0))
+        screen.blit(text, [20, 100])
+        text2 = font.render("2. キーボードの十字キーで操作してください。", True, (0, 0, 0))
+        screen.blit(text2, [20, 130])
         screen.blit(img_dog, rect)
         pygame.display.update()
         for event in pygame.event.get():
@@ -43,6 +49,17 @@ def main():
                     rect.move_ip(0, -10)
                 if event.key == K_DOWN:
                     rect.move_ip(0, 10)
+            if event.type == MOUSEBUTTONDOWN:
+                x, y = event.pos
+                #x -= img_dog.get_width() / 2
+                #y -= img_dog.get_height() / 2
+                print(rect.x)
+                print(x)
+                print(rect.y)
+                print(y)
+                next_x = x - rect.x
+                next_y = y - rect.y
+                rect.move_ip(next_x, next_y)
 
 
 if __name__ == "__main__":
